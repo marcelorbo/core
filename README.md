@@ -1,4 +1,4 @@
-## Sobre Core @Estartar
+## Estartar\Core
 
 Core é um micro framework MVC feito em PHP, construído como estudo do padrão de arquitetura e do ciclo de vida da aplicação.
 Muito fácil de configurar e usar, facilita tarefas comuns e permite a criação de sistemas em pouco tempo, com pouco código.
@@ -6,13 +6,9 @@ Um ótimo ponto de partida para o entendimento de conceitos que irão facilitar 
 
 ## Instalação
 
-Data Layer is available via Composer:
-
 ```bash
 "estartar/core": "1.1.*"
 ```
-
-or run
 
 ```bash
 composer require estartar/core
