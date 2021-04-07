@@ -1,0 +1,22 @@
+{
+    "name": "marcelorbo/core",
+    "description": "",
+    "homepage": "http://estartar.com",
+    "license": "MIT",    
+    "authors": [
+        {
+            "name": "Marcelo Oliveira",
+            "email": "marcelo@estartar.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-pdo": "*",
+        "phpmailer/phpmailer": "^6.2"        
+    },
+    "autoload": {
+        "psr-4": {
+            "Estartar\\Core\\": "src"
+        }
+    }
+}
