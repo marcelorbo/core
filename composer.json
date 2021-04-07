@@ -2,13 +2,13 @@
     "name": "marcelorbo/core",
     "description": "Ultra Light PHP MVC Framework",
     "homepage": "http://estartar.com",
-    "license": "MIT",    
     "authors": [
         {
             "name": "Marcelo Oliveira",
             "email": "marcelo@estartar.com"
         }
     ],
+    "minimum-stability": "dev",    
     "require": {
         "php": ">=7.2",
         "ext-pdo": "*",
