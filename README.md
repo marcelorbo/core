@@ -7,14 +7,10 @@ Um ótimo ponto de partida para o entendimento de conceitos que irão facilitar 
 ## Instalação
 
 ```bash
-"estartar/core": "1.1.*"
-```
-
-```bash
 composer require estartar/core
 ```
 
-## Documentação
+## Configuração
 
 Para começar a usar, precisamos de um arquivo de configurações como o modelo
 
@@ -44,7 +40,7 @@ define(
 )    
 ```
 
-## Credits
+## Autor
 
 - [Marcelo Oliveira](https://github.com/marcelorbo) (Developer)
 
