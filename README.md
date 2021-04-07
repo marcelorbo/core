@@ -10,7 +10,7 @@ Um ótimo ponto de partida para o entendimento de conceitos que irão facilitar 
 Via composer
 
 ```bash
-composer require estartar/core
+composer require estartar/core:dev-main
 ```
 
 ## Configuração
