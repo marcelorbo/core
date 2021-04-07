@@ -40,10 +40,6 @@ define(
 )    
 ```
 
-## Autor
-
-- [Marcelo Oliveira](https://github.com/marcelorbo) (Developer)
-
 ## License
 
 The MIT License (MIT). 
