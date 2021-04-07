@@ -1,6 +1,6 @@
 {
     "name": "marcelorbo/core",
-    "description": "",
+    "description": "Ultra Light PHP MVC Framework",
     "homepage": "http://estartar.com",
     "license": "MIT",    
     "authors": [
