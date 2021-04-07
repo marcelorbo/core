@@ -2,6 +2,7 @@
 
 Core é um micro framework MVC feito em PHP, construído como estudo do padrão de arquitetura e do ciclo de vida da aplicação.
 Muito fácil de configurar e usar, facilita tarefas comuns e permite a criação de sistemas em pouco tempo, com pouco código.
+
 Um ótimo ponto de partida para o entendimento de conceitos que irão facilitar a migração para frameworks mais robustos como Laravel, Zend.
 
 ## Instalação
