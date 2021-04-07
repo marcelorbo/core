@@ -7,7 +7,7 @@ Um ótimo ponto de partida para o entendimento de conceitos que irão facilitar 
 
 ## Instalação
 
-usando o composer
+Via composer
 
 ```bash
 composer require estartar/core
