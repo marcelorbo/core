@@ -1,3 +1,3 @@
-# core
+# Core
 
 Ultra Light PHP MVC Framework
