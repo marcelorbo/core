@@ -13,23 +13,23 @@ class Router
         {
             ob_start();
 
-            if(!file_exists('./views/' . $pagename . '.php')) 
+            if(!file_exists('./views/' . $pagename . '.phtml')) 
             {
                 throw new Exception("Page not exists");
                 exit;
             }
 
-            require('./views/' . $pagename . '.php');
+            require('./views/' . $pagename . '.phtml');
             $view = ob_get_clean();
     
             if($master) 
             {
-                if(!file_exists("./views/Master/". $master . ".php")) 
+                if(!file_exists("./views/Master/". $master . ".phtml")) 
                 {
                     throw new Exception("Master not exists");
                     exit;
                 }                
-                require("./views/Master/". $master . ".php");
+                require("./views/Master/". $master . ".phtml");
             } 
             else 
             {
