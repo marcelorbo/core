@@ -5,7 +5,7 @@ namespace Estartar\Core;
 use \Exception;
 use \PDO;
 use \PDOException;
-use \Core\Database;
+use \Estartar\Core\Database;
 
 abstract class ActiveRecord
 {
