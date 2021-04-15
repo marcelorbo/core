@@ -40,7 +40,7 @@ abstract class ActiveRecord
         $this->content[$parameter] = $value;
     }
  
-    public function __get($parameter)
+    public function &__get($parameter)
     {
         return $this->content[$parameter];
     }
@@ -328,9 +328,7 @@ abstract class ActiveRecord
                 $stmt = $pdo->prepare($this->statement);
 
                 foreach (array_keys($newContent) as $field) {
-                    // $stmt->bindParam(":{$field}", $this->__get($field));    
-                    // $stmt->bindParam(":{$field}", $newContent[$field]);                        
-                    $stmt->bindParam(":{$field}", $this[$field]);                          
+                    $stmt->bindParam(":{$field}", $this->$field);      
                 }
 
                 $stmt->execute();   
@@ -347,9 +345,7 @@ abstract class ActiveRecord
                 $stmt = $pdo->prepare($this->statement);
 
                 foreach (array_keys($newContent) as $field) {
-                    // $stmt->bindParam(":{$field}", $this->__get($field));    
-                    // $stmt->bindParam(":{$field}", $newContent[$field]);                        
-                    $stmt->bindParam(":{$field}", $this[$field]);                          
+                    $stmt->bindParam(":{$field}", $this->$field);                        
                 }
 
                 $stmt->execute();  
@@ -383,12 +379,13 @@ abstract class ActiveRecord
         $paramsToBind = [];
         $sqlClause = [];      
 
-        foreach($where as $filter) {
-
-            $filterParts = explode(" ", $filter);
-            $paramsToBind[$filterParts[0]] = $filterParts[2];
-            array_push($sqlClause, "{$filterParts[0]} {$filterParts[1]} :{$filterParts[0]}");            
-        }    
+        if(!empty($where)) {
+            foreach($where as $filter) {
+                $filterParts = explode(" ", $filter);
+                $paramsToBind[$filterParts[0]] = $filterParts[2];
+                array_push($sqlClause, "{$filterParts[0]} {$filterParts[1]} :{$filterParts[0]}");            
+            }    
+        }
      
         $sql = "SELECT COUNT(id) FROM " . (is_null($table) ? strtolower($class) : $table);
         $sql .= is_null($where) ? "" : " WHERE " . implode(' AND ', $sqlClause);
@@ -445,11 +442,11 @@ abstract class ActiveRecord
     public function query($rawquery)
     {
         try {
-            $pdo = \Core\Database::getInstance();
+            $pdo = \Estartar\Core\Database::getInstance();
             $stmt = $pdo->prepare($rawquery);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
-        } catch (PDOException $exception) {
+        } catch (\PDOException $exception) {
             $this->error = $exception;
             return null;
         }        
