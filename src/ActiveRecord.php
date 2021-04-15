@@ -328,7 +328,8 @@ abstract class ActiveRecord
                 $stmt = $pdo->prepare($this->statement);
 
                 foreach (array_keys($newContent) as $field) {
-                    $stmt->bindParam(":{$field}", $this->__get($field));    
+                    // $stmt->bindParam(":{$field}", $this->__get($field));    
+                    $stmt->bindParam(":{$field}", $newContent[$field]);                        
                 }
 
                 $stmt->execute();   
@@ -345,7 +346,8 @@ abstract class ActiveRecord
                 $stmt = $pdo->prepare($this->statement);
 
                 foreach (array_keys($newContent) as $field) {
-                    $stmt->bindParam(":{$field}", $this->__get($field));    
+                    // $stmt->bindParam(":{$field}", $this->__get($field));    
+                    $stmt->bindParam(":{$field}", $newContent[$field]);                        
                 }
 
                 $stmt->execute();  
