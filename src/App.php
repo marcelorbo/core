@@ -35,7 +35,18 @@ class App
 
             if(!file_exists("./controllers/" . $controller. ".php")) {
 
-                throw new Exception("Page not exists", 1);
+                // handle generic calls
+                $controllerAlt = "PersonalController";
+                $methodAlt = "page";
+                require_once "./controllers/" . $controllerAlt. ".php";
+
+                // todo: review
+                $class = new $controllerAlt();
+                $class->$methodAlt([
+                    strtolower(str_replace("Controller", "", $controller)), strtolower($method), $parameters
+                ]);
+
+                // throw new Exception("Page not exists", 1);
                 
             } else {
 
@@ -56,4 +67,5 @@ class App
     }
 
 }
+
 
