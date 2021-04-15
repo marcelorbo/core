@@ -329,7 +329,8 @@ abstract class ActiveRecord
 
                 foreach (array_keys($newContent) as $field) {
                     // $stmt->bindParam(":{$field}", $this->__get($field));    
-                    $stmt->bindParam(":{$field}", $newContent[$field]);                        
+                    // $stmt->bindParam(":{$field}", $newContent[$field]);                        
+                    $stmt->bindParam(":{$field}", $this[$field]);                          
                 }
 
                 $stmt->execute();   
@@ -347,7 +348,8 @@ abstract class ActiveRecord
 
                 foreach (array_keys($newContent) as $field) {
                     // $stmt->bindParam(":{$field}", $this->__get($field));    
-                    $stmt->bindParam(":{$field}", $newContent[$field]);                        
+                    // $stmt->bindParam(":{$field}", $newContent[$field]);                        
+                    $stmt->bindParam(":{$field}", $this[$field]);                          
                 }
 
                 $stmt->execute();  
