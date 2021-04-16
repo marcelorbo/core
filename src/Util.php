@@ -203,3 +203,75 @@ function rotate($file, $deg)
 
   }  
 
+  function thumb($file, $width, $height)
+  {
+      $array_file = explode("/", $file);
+      $count = count($array_file) - 1;
+      $filename = $array_file[$count]; 
+      $array_file_new = explode(".", $filename);
+      $filename_new = $array_file_new[0] . "_" . strval($width) . "x" . strval($height) . "." . $array_file_new[1];
+  
+      $source_file = CONFIG["BASEDIR"] . $file;
+      $dst_dir = CONFIG["BASEDIR"] . str_replace($filename, $filename_new, $file);
+      $dst_url = CONFIG["BASEURL"] . str_replace($filename, $filename_new, $file);
+      $max_width = intval($width);
+      $max_height = intval($height);    
+  
+      $imgsize = getimagesize($source_file);
+      $width = $imgsize[0];
+      $height = $imgsize[1];
+      $mime = $imgsize['mime'];
+      
+      switch($mime){
+          case 'image/gif':
+              $image_create = "imagecreatefromgif";
+              $image = "imagegif";
+              break;
+      
+          case 'image/png':
+              $image_create = "imagecreatefrompng";
+              $image = "imagepng";
+              $quality = 7;
+              break;
+      
+          case 'image/jpeg':
+              $image_create = "imagecreatefromjpeg";
+              $image = "imagejpeg";
+              $quality = 80;
+              break;
+      
+          default:
+              return false;
+              break;
+      }
+          
+      $dst_img = imagecreatetruecolor($max_width, $max_height);
+      $src_img = $image_create($source_file);
+          
+      $width_new = $height * $max_width / $max_height;
+      $height_new = $width * $max_height / $max_width;
+  
+      //if the new width is greater than the actual width of the image, then the height is too large and the rest cut off, or vice versa
+      if($width_new > $width){
+          //cut point by height
+          $h_point = (($height - $height_new) / 2);
+          //copy image
+          imagecopyresampled($dst_img, $src_img, 0, 0, 0, $h_point, $max_width, $max_height, $width, $height_new);
+      }else{
+          //cut point by width
+          $w_point = (($width - $width_new) / 2);
+          imagecopyresampled($dst_img, $src_img, 0, 0, $w_point, 0, $max_width, $max_height, $width_new, $height);
+      }
+          
+      $image($dst_img, $dst_dir, $quality);
+      
+      if($dst_img)imagedestroy($dst_img);
+      if($src_img)imagedestroy($src_img);
+  
+      // header('Content-Type: image/jpeg');
+      // readfile($dst_dir);
+      // exit;
+  
+      return $dst_url;
+      exit;
+  }
