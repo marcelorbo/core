@@ -172,6 +172,7 @@ abstract class ActiveRecord
     
         $paramsToBind = [];
         $sqlClause = [];      
+        $where = !empty($where) ? $where : [];
 
         foreach($where as $filter) {
 
