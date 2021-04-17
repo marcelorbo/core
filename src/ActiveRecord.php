@@ -172,13 +172,14 @@ abstract class ActiveRecord
     
         $paramsToBind = [];
         $sqlClause = [];      
-        $where = !empty($where) ? $where : [];
 
-        foreach($where as $filter) {
+        if(!empty($where)) {
+            foreach($where as $filter) {
 
-            $filterParts = explode(" ", $filter);
-            $paramsToBind[$filterParts[0]] = $filterParts[2];
-            array_push($sqlClause, "{$filterParts[0]} {$filterParts[1]} :{$filterParts[0]}");            
+                $filterParts = explode(" ", $filter);
+                $paramsToBind[$filterParts[0]] = $filterParts[2];
+                array_push($sqlClause, "{$filterParts[0]} {$filterParts[1]} :{$filterParts[0]}");            
+            }
         }
 
         $sql = "SELECT " . (is_null($columns) ? "*" : $columns) . " FROM " . (is_null($table) ? strtolower($class) : $table);
