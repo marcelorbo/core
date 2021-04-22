@@ -14,7 +14,7 @@ class Controller
         $this->viewbag = new ViewBag();
         
         if(!empty($_POST)) {
-            $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);            
+            // $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);            
         }
 
         $this->viewbag->URI = array_filter( 
